@@ -219,9 +219,9 @@ while True:
 
     # メニュー画面
     if screen_state == START:
-            screen.fill(BLACK)
-            draw_text(screen, "Space Invaders", window_width // 2 - 100, window_height // 2 - 30)
-            draw_text(screen, "Click to start", window_width // 2 - 84, window_height // 2 + 30)
+        screen.fill(BLACK)
+        draw_text(screen, "Space Invaders", window_width // 2 - 100, window_height // 2 - 30)
+        draw_text(screen, "Click to start", window_width // 2 - 84, window_height // 2 + 30)
     
     # プレイ画面
     elif screen_state == PLAYING:
