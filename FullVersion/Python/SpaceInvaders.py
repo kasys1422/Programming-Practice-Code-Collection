@@ -216,7 +216,9 @@ while True:
         # マウス入力（画面遷移用）
         if event.type == pygame.MOUSEBUTTONDOWN:
             if screen_state == START:
+                # オブジェクトの作成
                 player, alien_group = reset_and_get_state()
+                # スコアのリセット
                 score = 0
                 screen_state = PLAYING
             elif screen_state == GAME_OVER:
