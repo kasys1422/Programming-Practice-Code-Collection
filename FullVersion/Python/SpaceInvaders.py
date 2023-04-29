@@ -208,7 +208,12 @@ while True:
         if event.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
-        # キー入力（画面遷移用）
+        # キー入力（ゲーム終了用）
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_ESCAPE:
+                pygame.quit()
+                sys.exit()
+        # マウス入力（画面遷移用）
         if event.type == pygame.MOUSEBUTTONDOWN:
             if screen_state == START:
                 player, alien_group = reset_and_get_state()
