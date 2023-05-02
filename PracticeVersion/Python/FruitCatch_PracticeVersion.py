@@ -35,7 +35,6 @@
 
 
 
-
 #モジュールをimport
 import pygame
 import random
@@ -57,12 +56,25 @@ ORANGE_SCORE=20
 #目標スコア
 TARGET_SCORE=200
 
+#画像のパス
+'''
+事前に画像のダウンロードとFruitCatch_picturesフォルダの作成を行い、そのフォルダ内に画像入れてください。
+ダウンロードリンク
+Player : https://dotown.maeda-design-room.net/770/
+Apple : https://dotown.maeda-design-room.net/1911/
+Banana : https://dotown.maeda-design-room.net/1902/
+Orange : https://dotown.maeda-design-room.net/2538/
+'''
+PLAYER_PICTURE_PATH="FruitCatch_pictures/カピバラ.png"
+APPLE_PICTURE_PATH="FruitCatch_pictures/りんご.png"
+BANANA_PICTURE_PATH="FruitCatch_pictures/一本のバナナ.png"
+ORANGE_PICTURE_PATH="FruitCatch_pictures/みかん.png"
 
 ### プレイヤークラス　###
 class Player:
 
     def __init__(self):
-        self.image = pygame.image.load("FruitCatch_pictures/player.png")
+        self.image = pygame.image.load(PLAYER_PICTURE_PATH)
         self.image = pygame.transform.scale(self.image, (64, 64))
         self.rect = self.image.get_rect()
         self.rect.center = (320, 450)
