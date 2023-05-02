@@ -3,7 +3,7 @@
 
 # 課題 #########################################
 '''
-1. Playerクラスを完成させる
+1. Playerクラスを完成させる 164行目
  A キー入力による移動を実装する
   [ヒント]
   以下のコードで特定のキーを押した状態を取得できます
@@ -24,14 +24,14 @@
  ・弾の発射は、プレイヤーの位置から始まります。プレイヤーのx座標とy座標を参照して、弾の初期位置を設定しましょう。
  ・弾のインスタンスを作成したら、弾のリストに追加しましょう。これにより、画面上に複数の弾が同時に存在できるようになります。
 
-2. Alienクラスを完成させる
+2. Alienクラスを完成させる 194行目
  A エイリアンが壁に衝突すると進行方向を反転させ、1列下方向に進行するコードを書く
  [ヒント]
  ・エイリアンが壁に衝突したかどうかを判定するには、エイリアンのx座標と画面の幅を比較してください。エイリアンが壁に衝突した場合、進行方向を反転させる必要があります。
  ・進行方向を反転させるには、エイリアンの速度の符号を反転させましょう。例えば、速度が正の場合は負に、速度が負の場合は正に変更してください。
  ・エイリアンが壁に衝突した際に1列下に移動するには、y座標を更新してください。一定量の値を加算することで、下方向に移動させることができます。
 
-3. 当たり判定の実装
+3. 当たり判定の実装 263行目
  A 弾とエイリアンの当たり判定を実装
  [ヒント]
  ・衝突が発生した場合、エイリアンと弾を削除し、プレイヤーのスコアを加算してください。
@@ -91,11 +91,11 @@ class Object:
         self.rect.y = y
         self.active = True
     
-    # 描画関数
+    # 描画メソッド
     def draw(self, screen):
         pygame.draw.rect(screen, self.color, (self.rect.x, self.rect.y, self.rect.width, self.rect.height))
     
-    # オブジェクトを非アクティブ化するフラグを立てる関数
+    # オブジェクトを非アクティブ化するフラグを立てるメソッド
     def kill(self):
         self.rect.x = -1000
         self.active = False
@@ -120,13 +120,13 @@ class ObjectList:
                 self.object_list.pop(j-del_number)
                 del_number += 1
 
-    # オブジェクトの描画を行う関数
+    # オブジェクトの描画を行うメソッド
     def draw(self, screen):
         # それぞれの要素の情報を更新
         for i in range(len(self.object_list)):
             self.object_list[i].draw(screen)
     
-    # オブジェクトリスト（自分自身）と特定のオブジェクトの当たり判定を検出する関数
+    # オブジェクトリスト（自分自身）と特定のオブジェクトの当たり判定を検出するメソッド
     def check_hit_object(self, target_object:Object, kill_object = True):
         result = False
         for i in range(len(self.object_list)):
@@ -171,7 +171,7 @@ class Player(Object):
         pass
         
 
-    # 描画関数
+    # 描画メソッド
     def draw(self, screen):
         self.bullet_group.draw(screen)
         return super().draw(screen)

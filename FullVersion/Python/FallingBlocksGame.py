@@ -147,16 +147,6 @@ SHAPES = [
       '..O..',
       '..O..',
       '..O..',
-      '.....'],
-     ['.....',
-      '.....',
-      '.OOOO',
-      '.....',
-      '.....'],
-     ['..O..',
-      '..O..',
-      '..O..',
-      '..O..',
       '.....']]
 ]
 
@@ -290,15 +280,27 @@ class FallingBlocksGame:
         self.score += 10
         self.current_block = self.new_block()
 
-        if self.collision_check(self.current_block, dy=0):
+        if self.collision_check(self.current_block, dy=0) and self.current_block.y >= 0:
             self.game_over = True
 
-        # 一列揃ったことを確認して消去
-        full_lines = [y for y, row in enumerate(self.grid) if all(cell for cell in row)]
+        # 一列揃っている行を見つけてリストに追加
+        full_lines = []
+        for i in range(len(self.grid)):
+            if self.grid[i].count(0) == 0:
+                full_lines.append(i)
+        
+        # 一列揃っている行があれば消去処理を行う
         if full_lines:
+            # 揃った行を削除し、新しい行を追加する
             for y in full_lines:
-                del self.grid[y]
-                self.grid.insert(0, [0 for _ in range(GRID_WIDTH)])
+                del self.grid[y] # 揃った行を削除
+                # GRID_WIDTH の数だけ 0 をnew_empty_rowリストに追加する
+                new_empty_row = []
+                for _ in range(GRID_WIDTH):
+                    new_empty_row.append(0)
+                # 新しい空の行をゲームボードの一番上（インデックス 0 の位置）に追加する
+                self.grid.insert(0, new_empty_row)
+            # スコアを加算（100点×消去した行数）
             self.score += 100 * len(full_lines)
             
     # ゲームループ
@@ -382,7 +384,7 @@ class FallingBlocksGame:
         self.game_over = False
         self.current_block = self.new_block()
 
-# メイン関数
+# メイン
 if __name__ == '__main__':
     falling_blocks_game = FallingBlocksGame()   # ゲーム管理クラスのインスタンスを作成
     falling_blocks_game.game_loop()             # ゲームループを実行
