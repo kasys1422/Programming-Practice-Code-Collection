@@ -35,6 +35,7 @@ class Hangman:
         # 課題1A 難易度に応じた最大間違い回数を設定する
         # ここに処理を記述
         
+        pass
 
     # 単語の表示を更新するメソッド
     def display_word(self):
@@ -49,6 +50,7 @@ class Hangman:
         # 課題3A 入力された文字が正しい形式かチェックし、予想を処理する
         # ここに処理を記述
         
+        pass
 
     def play(self):
         print("ハングマンゲームへようこそ！")
