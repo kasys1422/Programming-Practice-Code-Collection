@@ -1,4 +1,31 @@
 # ブラックジャックゲームサンプル（Colaboratory用）
+
+# 課題
+'''
+1. デッキクラスの初期化処理を完成させる
+ A すべての組み合わせのカードをデッキに追加
+  [ヒント]
+  ・2重forループを使ってすべての組み合わせを作りましょう
+  ・最初の方にSUITSリストとVALUESリストがあるので参照しましょう
+  ・各スート(♠, ♥, ♦, ♣)と値の組み合わせに対してCardオブジェクトを作成し、デッキに追加しましょう
+
+2. スコアの計算メソッドを完成させる
+ A 一列揃っている行を見つけてリストに追加
+  [ヒント]
+  ・カードクラスのget_value()メソッドでカード単体のスコアを取得できます
+  ・ブラックジャックのスコア計算方法は以下の通りです
+    1. スコアとエースのカウントをそれぞれ0に初期化します。
+    2. 手札内の各カードに対して、カードの値を整数に変換し、それをスコアに加算します。J、Q、Kは10として扱い、エースは11として扱います。エースのカードを見つけた場合、エースのカウントも増やします。
+    3. 合計スコアが21を超えている場合、エースが1枚以上あるか確認します。エースがある場合、スコアから10を引いてエースを1として扱い、エースのカウントを1減らします。この処理を繰り返し、スコアが21以下になるかエースがなくなるまで実行します。
+ 
+3. ゲーム終了前のスコア判定処理を完成させる
+ A それぞれのスコアを計算して勝敗の判定
+  [ヒント]
+  ・player_scoreとdealer_scoreを計算するために、Playerクラスのcalculate_score()メソッドを呼び出しましょう。
+  ・ディーラーのスコアが21を超えているか確認し、バスト（スコアが21を超える）した場合はプレイヤーの勝ちと表示しましょう。
+  ・プレイヤーのスコアがディーラーのスコアより高い場合はプレイヤーの勝ち、低い場合はディーラーの勝ち、同じ場合は引き分けと表示しましょう。
+'''
+
 import random
 import time
 
@@ -13,13 +40,12 @@ def print_rules():
 5. ディーラーがバストすると、プレイヤーの勝ちです。
 6. 両者がバストしない場合、手札の合計が21に近い方が勝ちです。同じ場合は引き分けとなります。
 """)
-    
-# 定数
-SUITS = ["♠", "♥", "♦", "♣"]
-VALUES = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"]
 
 # カードクラス
 class Card:
+    suits = ["♠", "♥", "♦", "♣"]
+    values = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"]
+
     # 作成時に一度だけ実行
     def __init__(self, suit, value):
         self.suit = suit
@@ -44,11 +70,9 @@ class Deck:
     def __init__(self):
         self.cards = []
 
-        # 各スート(♠, ♥, ♦, ♣)と値の組み合わせに対してCardオブジェクトを作成する
-        for suit in SUITS:
-            for value in VALUES:
-                card = Card(suit, value)
-                self.cards.append(card)
+        # 課題1A　すべての組み合わせのカードをデッキに追加
+        # ここに処理を記述
+
 
         # カードをシャッフル
         random.shuffle(self.cards)
@@ -82,15 +106,8 @@ class Player:
     def calculate_score(self):
         score = 0
         aces = 0
-        for card in self.hand:
-            value = card.get_value()
-            if value == 11:
-                aces += 1
-            score += value
-
-        while score > 21 and aces > 0:
-            score -= 10
-            aces -= 1
+        # 課題2A スコアの計算
+        # ここに処理を記述
 
         return score
 
@@ -132,18 +149,8 @@ def play_blackjack():
         dealer.draw(deck)
         dealer.show_hand()
 
-    # それぞれのスコアを計算して勝敗の判定
-    player_score = player.calculate_score()
-    dealer_score = dealer.calculate_score()
-
-    if dealer_score > 21:
-        print("ディーラーがバスト！ プレイヤーの勝ちです。")
-    elif player_score > dealer_score:
-        print("プレイヤーの勝ち！")
-    elif player_score < dealer_score:
-        print("ディーラーの勝ち！")
-    else:
-        print("引き分け！")
+    # 課題3A それぞれのスコアを計算して勝敗の判定
+    # ここに処理を記述
 
 if __name__ == '__main__':
     play_blackjack()
