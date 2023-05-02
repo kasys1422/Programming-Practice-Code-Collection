@@ -26,7 +26,7 @@
  A キーを取得し、ループを抜ける
   [ヒント]
   ・コードを良く読んでゲームループの構造を把握しましょう
-  ・event.type == KEYDOWN and event.key == K_RETURN の条件式でキー判定を行えます。
+  ・event.type == KEYDOWN and event.key == K_RETURN の条件式でキー判定を行えます
   ・breakを使ってループを抜けましょう
   ・for-else構文とcontinue文を使って2重ループ構造を抜ける方法を検討しましょう
 '''
